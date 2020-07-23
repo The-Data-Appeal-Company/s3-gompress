@@ -12,14 +12,14 @@ S3-gompressor allows getting and putting objects on S3 without worrying about de
 package main
 
 import (
-	"github.com/The-Data-Appeal-Company/s3-gompress/client"
-	"github.com/The-Data-Appeal-Company/s3-gompress/compressors"
-	"github.com/aws/aws-sdk-go/aws/session"
-	log "github.com/sirupsen/logrus"
+    "github.com/The-Data-Appeal-Company/s3-gompress/client"
+    "github.com/The-Data-Appeal-Company/s3-gompress/compressors"
+    "github.com/aws/aws-sdk-go/aws/session"
+    log "github.com/sirupsen/logrus"
 )
 
 func main() {
-	sess, err := session.NewSessionWithOptions(session.Options{
+    sess, err := session.NewSessionWithOptions(session.Options{
         SharedConfigState: session.SharedConfigEnable,
     })
     if err != nil {
