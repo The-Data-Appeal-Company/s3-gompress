@@ -2,10 +2,8 @@ package client
 
 import (
 	"fmt"
-	"github.com/The-Data-Appeal-Company/s3-gompress/compressors"
 	"github.com/The-Data-Appeal-Company/s3-gompress/test"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/mitchelldavis/go_localstack/pkg/localstack"
 	log "github.com/sirupsen/logrus"
@@ -159,30 +157,4 @@ func (suite *LocalStackTestSuite) TestShouldErrorIfBucketNotExistsPut() {
 	obj := test.ReadFileOrError(suite.T(), "test_data/input.json")
 	err = s.Put(key, obj)
 	suite.Error(err)
-}
-
-func (suite *LocalStackTestSuite) TestT() {
-	sess, err := session.NewSessionWithOptions(session.Options{
-		SharedConfigState: session.SharedConfigEnable,
-	})
-	if err != nil {
-		panic(err)
-	}
-
-	comp := &compressors.GzipCompressor{}
-	s3Client := NewS3CompressorClient(sess, "travelappeal-redshift-unload", comp)
-	err = s3Client.Put("my/key.gz", []byte("LOL"))
-	if err != nil {
-		log.Errorf("oh no! %v", err)
-	} else {
-		log.Info("hooray")
-	}
-	//no compression client
-	s3ClientPlain := NewS3PlainClient(sess, "travelappeal-redshift-unload")
-	err = s3ClientPlain.Put("my/key", []byte("LOL"))
-	if err != nil {
-		log.Errorf("oh no! %v", err)
-	} else {
-		log.Info("hooray")
-	}
 }
