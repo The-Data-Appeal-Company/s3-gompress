@@ -37,14 +37,14 @@ func main() {
     }
     //get
     get, err := s3Client.Get("my/key.gz")
-	if err != nil {
-		log.Errorf("oh no! %v", err)
-	} else {
-		log.Info("hooray")
-	}
-	if string(get) == "LOL" {
-		log.Info("it works!")
-	}
+    if err != nil {
+        log.Errorf("oh no! %v", err)
+    } else {
+        log.Info("hooray")
+    }
+    if string(get) == "LOL" {
+        log.Info("it works!")
+    }
     //no compression client
     s3ClientPlain := client.NewS3PlainClient(sess, "mybucket")
     err = s3ClientPlain.Put("my/key", []byte("LOL"))
