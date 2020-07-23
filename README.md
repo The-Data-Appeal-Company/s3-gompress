@@ -28,12 +28,23 @@ func main() {
     //using gzip as compression/decompression
     comp := &compressors.GzipCompressor{}
     s3Client := client.NewS3CompressorClient(sess, "mybucket", comp)
+    //put
     err = s3Client.Put("my/key.gz", []byte("LOL"))
     if err != nil {
         log.Errorf("oh no! %v", err)
     } else {
         log.Info("hooray")
     }
+    //get
+    get, err := s3Client.Get("my/key.gz")
+	if err != nil {
+		log.Errorf("oh no! %v", err)
+	} else {
+		log.Info("hooray")
+	}
+	if string(get) == "LOL" {
+		log.Info("it works!")
+	}
     //no compression client
     s3ClientPlain := client.NewS3PlainClient(sess, "mybucket")
     err = s3ClientPlain.Put("my/key", []byte("LOL"))
