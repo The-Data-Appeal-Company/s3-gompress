@@ -28,6 +28,9 @@ func (g *GzipCompressor) Compress(data []byte) ([]byte, error) {
 
 func (g *GzipCompressor) Decompress(input []byte) ([]byte, error) {
 	gr, err := gzip.NewReader(bytes.NewBuffer(input))
+	if err != nil {
+		return []byte{}, err
+	}
 	defer gr.Close()
 	data, err := ioutil.ReadAll(gr)
 	if err != nil {
