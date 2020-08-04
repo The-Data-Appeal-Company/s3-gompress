@@ -2,7 +2,7 @@ package client
 
 import (
 	"fmt"
-	"github.com/The-Data-Appeal-Company/s3-gompress/compressors"
+	"github.com/The-Data-Appeal-Company/gompressors"
 	"github.com/The-Data-Appeal-Company/s3-gompress/test"
 	"github.com/stretchr/testify/assert"
 	"reflect"
@@ -51,7 +51,7 @@ func TestS3CompressorClient_Get(t *testing.T) {
 	assert.NoError(t, err)
 	type fields struct {
 		s3Client   S3Client
-		compressor compressors.Compressor
+		compressor gompressors.Compressor
 	}
 	type args struct {
 		key string
@@ -67,7 +67,7 @@ func TestS3CompressorClient_Get(t *testing.T) {
 			name: "shouldGetFromS3",
 			fields: fields{
 				s3Client:   s3ClientMock,
-				compressor: &compressors.GzipCompressor{},
+				compressor: &gompressors.GzipCompressor{},
 			},
 			args: args{
 				key: "input.json.gz",
@@ -79,7 +79,7 @@ func TestS3CompressorClient_Get(t *testing.T) {
 			name: "shouldErrorIfS3Error",
 			fields: fields{
 				s3Client:   s3ClientMock,
-				compressor: &compressors.GzipCompressor{},
+				compressor: &gompressors.GzipCompressor{},
 			},
 			args: args{
 				key: "antani.json",
@@ -123,7 +123,7 @@ func TestS3CompressorClient_Put(t *testing.T) {
 	compressorErrorMock := CompressorError{}
 	type fields struct {
 		s3Client   S3Client
-		compressor compressors.Compressor
+		compressor gompressors.Compressor
 	}
 	type args struct {
 		key    string
@@ -139,7 +139,7 @@ func TestS3CompressorClient_Put(t *testing.T) {
 			name: "shouldPutOnS3",
 			fields: fields{
 				s3Client:   s3ClientMock,
-				compressor: &compressors.GzipCompressor{},
+				compressor: &gompressors.GzipCompressor{},
 			},
 			args: args{
 				key:    "input.json.gz",
@@ -151,7 +151,7 @@ func TestS3CompressorClient_Put(t *testing.T) {
 			name: "shouldErrorWhenS3Error",
 			fields: fields{
 				s3Client:   s3ClientMock,
-				compressor: &compressors.GzipCompressor{},
+				compressor: &gompressors.GzipCompressor{},
 			},
 			args: args{
 				key:    "i_want_error",

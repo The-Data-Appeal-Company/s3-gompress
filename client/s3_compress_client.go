@@ -1,16 +1,16 @@
 package client
 
 import (
-	"github.com/The-Data-Appeal-Company/s3-gompress/compressors"
+	"github.com/The-Data-Appeal-Company/gompressors"
 	"github.com/aws/aws-sdk-go/aws/client"
 )
 
 type S3CompressorClient struct {
 	s3Client   S3Client
-	compressor compressors.Compressor
+	compressor gompressors.Compressor
 }
 
-func NewS3CompressorClient(sess client.ConfigProvider, bucket string, compressor compressors.Compressor) *S3CompressorClient {
+func NewS3CompressorClient(sess client.ConfigProvider, bucket string, compressor gompressors.Compressor) *S3CompressorClient {
 	plainClient := NewS3PlainClient(sess, bucket)
 	return &S3CompressorClient{
 		s3Client:   plainClient,

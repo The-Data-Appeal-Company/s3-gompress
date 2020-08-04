@@ -13,7 +13,7 @@ package main
 
 import (
     "github.com/The-Data-Appeal-Company/s3-gompress/client"
-    "github.com/The-Data-Appeal-Company/s3-gompress/compressors"
+    "github.com/The-Data-Appeal-Company/gompressors"
     "github.com/aws/aws-sdk-go/aws/session"
     log "github.com/sirupsen/logrus"
 )
@@ -26,7 +26,7 @@ func main() {
         panic(err)
     }
     //using gzip as compression/decompression
-    comp := &compressors.GzipCompressor{}
+    comp := &gompressors.GzipCompressor{}
     s3Client := client.NewS3CompressorClient(sess, "mybucket", comp)
     //put
     err = s3Client.Put("my/key.gz", []byte("LOL"))
