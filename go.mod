@@ -1,4 +1,4 @@
-module s3-gompress
+module github.com/The-Data-Appeal-Company/s3-gompress
 
 go 1.14
 
